@@ -13,7 +13,7 @@ def gen_config(args):
             seq_home = '../dataset/OTB'
         save_home = '../result_fig'
         result_home = '../result'
-        
+
         seq_name = args.seq
         img_dir = os.path.join(seq_home, seq_name, 'img')
         gt_path = os.path.join(seq_home, seq_name, 'groundtruth_rect.txt')
@@ -25,7 +25,7 @@ def gen_config(args):
 
         gt = np.loadtxt(gt_path,delimiter=',')
         init_bbox = gt[0]
-        
+
         savefig_dir = os.path.join(save_home,seq_name)
         result_dir = os.path.join(result_home,seq_name)
         if not os.path.exists(result_dir):
@@ -44,7 +44,7 @@ def gen_config(args):
         savefig_dir = param['savefig_dir']
         result_path = param['result_path']
         gt = None
-        
+
     if args.savefig:
         if not os.path.exists(savefig_dir):
             os.makedirs(savefig_dir)
