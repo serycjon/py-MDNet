@@ -7,7 +7,10 @@ def gen_config(args):
     if args.seq != '':
         # generate config from a sequence name
 
-        seq_home = '../dataset/OTB'
+        if args.cointracking:
+            seq_home = '../dataset/CTR'
+        else:
+            seq_home = '../dataset/OTB'
         save_home = '../result_fig'
         result_home = '../result'
         
@@ -17,7 +20,8 @@ def gen_config(args):
 
         img_list = os.listdir(img_dir)
         img_list.sort()
-        img_list = [os.path.join(img_dir,x) for x in img_list]
+        extensions = set(['.jpg'])
+        img_list = [os.path.join(img_dir,x) for x in img_list if os.path.splitext(x)[1] in extensions]
 
         gt = np.loadtxt(gt_path,delimiter=',')
         init_bbox = gt[0]
@@ -27,6 +31,8 @@ def gen_config(args):
         if not os.path.exists(result_dir):
             os.makedirs(result_dir)
         result_path = os.path.join(result_dir,'result.json')
+        if args.cointracking:
+            gt = None
 
     elif args.json != '':
         # load config from a json file
