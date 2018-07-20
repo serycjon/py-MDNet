@@ -3,7 +3,7 @@
 by [Hyeonseob Nam](https://kr.linkedin.com/in/hyeonseob-nam/) and [Bohyung Han](http://cvlab.postech.ac.kr/~bhhan/) at POSTECH
 
 ## Introduction
-Python (PyTorch) implementation of MDNet tracker, which is ~2x faster than the original matlab implementation. 
+Python (PyTorch) implementation of MDNet tracker, which is ~2x faster than the original matlab implementation.
 #### [[Project]](http://cvlab.postech.ac.kr/research/mdnet/) [[Paper]](https://arxiv.org/abs/1510.07945) [[Matlab code]](https://github.com/HyeonseobNam/MDNet)
 
 If you're using this code for your research, please cite:
@@ -15,10 +15,10 @@ If you're using this code for your research, please cite:
 	month = {June},
 	year = {2016}
 	}
- 
+
 ## Prerequisites
 - python 2.7
-- [PyTorch](http://pytorch.org/) and its dependencies 
+- [PyTorch](http://pytorch.org/) and its dependencies
 
 ## Usage
 
@@ -30,7 +30,7 @@ If you're using this code for your research, please cite:
  - You can provide a sequence configuration in two ways (see tracking/gen_config.py):
    - ```python run_tracker.py -s [seq name]```
    - ```python run_tracker.py -j [json path]```
- 
+
 ### Pretraining
  - Download [VGG-M](http://www.vlfeat.org/matconvnet/models/imagenet-vgg-m.mat) (matconvnet model) and save as "models/imagenet-vgg-m.mat"
  - Download [VOT](http://www.votchallenge.net/) datasets into "dataset/vot201x"
@@ -39,3 +39,10 @@ If you're using this code for your research, please cite:
  python prepro_data.py
  python train_mdnet.py
 ```
+
+### Coin-tracking
+- Convert the cointracking dataset
+	- ```python cointracking_convert.py --src path_to_cointracking_dataset```
+- Track ```python run_tracker.py -c -s [seq name]```
+- Convert to the yolo-compatible format
+	- ```python yolo_convert.py --cointracking_dir path_to_cointracking_dataset --dst output_directory```
